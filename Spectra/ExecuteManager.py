@@ -1,4 +1,5 @@
 
+
 class Execute:
     def __init__(self, debug = False, mode = 1):
         if debug:
@@ -6,3 +7,6 @@ class Execute:
 
     def Echo(self, text):
         print("Spectra: {}".format(text))
+    
+    def Exec(self, action, data):
+        pass
