@@ -1,9 +1,10 @@
 from . import ExecuteManager
-import json
+import json, os
 
 Actions = []
+Actions_path = os.path.dirname(os.path.abspath(__file__)) + "/Data/Actions.json"
 
-with open('Data/Actions.json') as f:
+with open(Actions_path, encoding='utf-8') as f:
     Actions = json.load(f)
 
 

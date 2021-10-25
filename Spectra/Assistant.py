@@ -3,29 +3,29 @@ from . import AudioListen
 
 import asyncio
 import time
-import json, requests
+import json, requests, os
 
 
 debug = 0
 mode = 0
-InputParser = Parser.Parser()
+Config_path = os.path.dirname(os.path.abspath(__file__)) + "/Data/Config.json"
 
 
 async def GetNewVersion():
-    response = requests.get('https://api.github.com/repos/Erition-Interactive/Spectra/releases')
-    print(response.text)
+    response = requests.get('https://erition-interactive.github.io/Spectra/Spectra/Data/Config.json')
+    return response.text
 
 
-async def AutoUpdate():
+def AutoUpdate():
     OldConfig = []
     NewConfig = []
 
-    with open('../Data/Config.json') as f:
+    with open(Config_path) as f:
         OldConfig = json.load(f)
-    task1 = asyncio.create_task(
-        GetNewVersion()
-        )
-    await task1
+    NewConfig = json.loads(asyncio.run(GetNewVersion()))
+    if OldConfig['Version'] != NewConfig['Version']:
+        print("Нужна обнова...")
+    
 
 
 class Assistant(object):
@@ -35,7 +35,7 @@ class Assistant(object):
         if debug:
             print("[Assistant.py] Debug is Active! Mode = {}".format(mode))
         if autoupdate:
-            asyncio.run(AutoUpdate())
+            AutoUpdate()
 
     def Read(self, data):
         args = InputParser.Parse(data)
