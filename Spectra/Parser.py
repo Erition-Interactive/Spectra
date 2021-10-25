@@ -2,17 +2,17 @@ Actions = [
     {
         "examples": ["привет", "здравствуй", "добрый день",
             "hello", "good morning"],
-        "responses": "greeting"
+        "responses": "print('Ну привет')"
     },
     {
         "examples": ["пока", "до свидания", "увидимся", "до встречи",
             "goodbye", "bye", "see you soon"],
-        "responses": "quit"
+        "responses": "exit()"
     },
     {
         "examples": ["найди в гугл",
             "search on google", "google", "find on google"],
-        "responses": "search_google"
+        "responses": "print('Гугл тебе заблокировали? Сам ищи')"
     }
 ]
 

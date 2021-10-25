@@ -7,4 +7,4 @@ class Execute:
         print("Spectra: {}".format(text))
     
     def Exec(self, action, data):
-        pass
+        eval(action)
