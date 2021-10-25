@@ -1,8 +1,6 @@
 from . import ExecuteManager
 from . import Parser
 
-debug = 0
-mode = 0
 TaskExec = ExecuteManager.Execute()
 InputParser = Parser.Parser()
 class Assistant(object):
@@ -11,7 +9,7 @@ class Assistant(object):
         TaskExec = ExecuteManager.Execute(debug = debug, mode = mode)
         
         if debug:
-            print("Debug is Active! Mode = {}".format(mode))
+            print("[Assistent.py] Debug is Active! Mode = {}".format(mode))
 
     def Read(self, data):
         args = InputParser.Parse(data)
