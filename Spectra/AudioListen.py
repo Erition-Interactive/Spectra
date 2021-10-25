@@ -39,8 +39,8 @@ def record_volume():
                 if x.lower() in text:
                     Execute.Exec(action=i['responses'], data=None)
                     break
-    except:
-        print('Error')
+    except Exception as E:
+        print('AudioListener error: {}'.format(E))
 
     while True:
         record_volume()
