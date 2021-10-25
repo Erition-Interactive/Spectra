@@ -12,7 +12,7 @@ InputParser = Parser.Parser()
 
 
 async def GetNewVersion():
-    response = requests.get('https://erition-interactive.github.io/Spectra/Spectra/Data/Config.json')
+    response = requests.get('https://api.github.com/repos/Erition-Interactive/Spectra/releases')
     print(response.text)
 
 
@@ -20,8 +20,12 @@ async def AutoUpdate():
     OldConfig = []
     NewConfig = []
 
-    with open('Data/Config.json') as f:
+    with open('../Data/Config.json') as f:
         OldConfig = json.load(f)
+    task1 = asyncio.create_task(
+        GetNewVersion()
+        )
+    await task1
 
 
 class Assistant(object):
@@ -30,6 +34,8 @@ class Assistant(object):
         
         if debug:
             print("[Assistant.py] Debug is Active! Mode = {}".format(mode))
+        if autoupdate:
+            asyncio.run(AutoUpdate())
 
     def Read(self, data):
         args = InputParser.Parse(data)
