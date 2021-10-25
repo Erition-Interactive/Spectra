@@ -1,6 +1,7 @@
 from . import Parser
 from . import AudioListen
 
+from github import Github
 import asyncio
 import time
 import json, requests, os
@@ -25,6 +26,15 @@ def AutoUpdate():
     NewConfig = json.loads(asyncio.run(GetNewVersion()))
     if OldConfig['Version'] != NewConfig['Version']:
         print("Нужна обнова...")
+        g = Github()
+        repo = g.get_repo("Erition-Interactive/Spectra")
+        contents = repo.get_contents("")
+        while contents:
+            file_content = contents.pop(0)
+            if file_content.type == "dir":
+                contents.extend(repo.get_contents(file_content.path))
+            else:
+                print(file_content)
     
 
 
