@@ -7,8 +7,6 @@ import time
 import json, requests, os
 
 
-debug = 0
-mode = 0
 Config_path = os.path.dirname(os.path.abspath(__file__)) + "/Data/Config.json"
 
 
